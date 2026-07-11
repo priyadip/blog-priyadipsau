@@ -1,2 +1,11 @@
+packages:
+  - "."
+
+# esbuild's postinstall just fetches its platform binary (needed by Vite/Astro's
+# build). Allowlisted explicitly rather than disabling the safety check globally.
+# Key name differs across pnpm majors, so both are set.
+onlyBuiltDependencies:
+  - esbuild
+
 allowBuilds:
   esbuild: true
