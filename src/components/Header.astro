@@ -1,0 +1,41 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+<header class="site-header">
+  <div class="container header-row">
+    <a href="/" class="wordmark">Priyadip Sau</a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="https://priyadipsau.in" target="_blank" rel="noopener">Portfolio ↗</a>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-6) 0;
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .wordmark {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+  }
+  .header-nav a {
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+---
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+  <span aria-hidden="true">◐</span>
+</button>
+
+<style>
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-text);
+    font-size: var(--step-0);
+    line-height: 1;
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+  }
+  .theme-toggle:hover {
+    border-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'theme';
+  const button = document.getElementById('theme-toggle');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function effectiveTheme(): 'light' | 'dark' {
+    const explicit = document.documentElement.dataset.theme;
+    if (explicit === 'light' || explicit === 'dark') return explicit;
+    return prefersDark.matches ? 'dark' : 'light';
+  }
+
+  button?.addEventListener('click', () => {
+    const next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+</script>

@@ -1,0 +1,34 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../layouts/PostLayout.astro';
+import { readingTime } from '../utils/readingTime';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  // Draft posts still get a page (so they're previewable/build-verifiable);
+  // they're just excluded from the index and RSS feed below.
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const minutes = readingTime(post.body ?? '');
+---
+<PostLayout
+  title={post.data.title}
+  description={post.data.description}
+  publishDate={post.data.publishDate}
+  updatedDate={post.data.updatedDate}
+  tags={post.data.tags}
+  minutes={minutes}
+>
+  <Content />
+</PostLayout>

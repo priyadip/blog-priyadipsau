@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fbfaf8"/>
+  <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#e4e1d8" stroke-width="2"/>
+  <text x="80" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="72" fill="#1b1b18">Priyadip Sau</text>
+  <text x="80" y="360" font-family="ui-monospace, 'IBM Plex Mono', monospace" font-size="28" fill="#5b5750">Notes on ML, interpretability, and math</text>
+  <rect x="80" y="410" width="64" height="6" fill="#3452e1"/>
+</svg>
