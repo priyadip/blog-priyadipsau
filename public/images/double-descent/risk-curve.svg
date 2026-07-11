@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" font-family="ui-monospace, 'IBM Plex Mono', monospace">
+  <style>
+    .bg { fill: #fbfaf8; }
+    .axis { stroke: #1b1b18; }
+    .grid { stroke: #e4e1d8; }
+    .curve { stroke: #1b1b18; }
+    .threshold { stroke: #3452e1; }
+    .label { fill: #5b5750; }
+    .title-label { fill: #1b1b18; }
+    .threshold-label { fill: #3452e1; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #14151a; }
+      .axis { stroke: #e8e6df; }
+      .grid { stroke: #2b2c33; }
+      .curve { stroke: #e8e6df; }
+      .threshold { stroke: #8fa3ff; }
+      .label { fill: #9b978c; }
+      .title-label { fill: #e8e6df; }
+      .threshold-label { fill: #8fa3ff; }
+    }
+  </style>
+
+  <rect width="720" height="460" class="bg"/>
+
+  <!-- gridlines -->
+  <line x1="60" y1="200" x2="680" y2="200" class="grid" stroke-width="1"/>
+  <line x1="267" y1="20" x2="267" y2="380" class="grid" stroke-width="1"/>
+  <line x1="473" y1="20" x2="473" y2="380" class="grid" stroke-width="1"/>
+
+  <!-- axes -->
+  <line x1="60" y1="380" x2="680" y2="380" class="axis" stroke-width="1.5"/>
+  <line x1="60" y1="20" x2="60" y2="380" class="axis" stroke-width="1.5"/>
+
+  <!-- x ticks -->
+  <text x="60" y="400" text-anchor="middle" class="label" font-size="13">0</text>
+  <text x="267" y="400" text-anchor="middle" class="label" font-size="13">1</text>
+  <text x="473" y="400" text-anchor="middle" class="label" font-size="13">2</text>
+  <text x="680" y="400" text-anchor="middle" class="label" font-size="13">3</text>
+
+  <!-- y ticks -->
+  <text x="48" y="384" text-anchor="end" class="label" font-size="13">0</text>
+  <text x="48" y="204" text-anchor="end" class="label" font-size="13">5</text>
+  <text x="48" y="24" text-anchor="end" class="label" font-size="13">10+</text>
+
+  <!-- interpolation threshold -->
+  <line x1="267" y1="20" x2="267" y2="380" class="threshold" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="273" y="36" class="threshold-label" font-size="13">interpolation threshold (γ=1)</text>
+
+  <!-- underparameterized / overparameterized region labels -->
+  <text x="163" y="415" text-anchor="middle" class="label" font-size="13">underparameterized</text>
+  <text x="470" y="415" text-anchor="middle" class="label" font-size="13">overparameterized</text>
+
+  <!-- left branch: risk = gamma / (1 - gamma), clipped at risk=10 -->
+  <polyline class="curve" fill="none" stroke-width="2.5" points="
+    64,379 81,376 101,371 122,365 143,356 163,344 184,326 205,296 215,272 225,236 236,176 242,116 246,56 249,20
+  "/>
+
+  <!-- right branch: risk = 1 / (gamma - 1), clipped at risk=10 -->
+  <polyline class="curve" fill="none" stroke-width="2.5" points="
+    287,20 291,80 298,140 308,200 318,236 329,260 349,290 370,308 411,329 473,344 577,356 680,362
+  "/>
+
+  <!-- axis titles -->
+  <text x="370" y="440" text-anchor="middle" class="title-label" font-size="14">γ = p / n  (parameters ⁄ samples)</text>
+  <text x="70" y="14" class="title-label" font-size="13">risk (null model, σ²=1)</text>
+</svg>
