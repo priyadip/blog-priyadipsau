@@ -27,7 +27,7 @@ The classical story is that bias falls and variance rises as capacity grows, and
 Nakkiran, Kaplun, Bansal, Yang, Barak, and Sutskever formalize "how big is the model" not by parameter count but by what it can actually fit. Their **Effective Model Complexity** (EMC) of a training procedure $\mathcal{T}$, with respect to a distribution $\mathcal{D}$ and tolerance $\epsilon$, is
 
 $$
-\mathrm{EMC}_{\mathcal{D},\epsilon}(\mathcal{T}) := \max\left\{\, n \;\middle|\; \mathbb{E}_{S \sim \mathcal{D}^n}\!\left[\mathrm{Error}_S(\mathcal{T}(S))\right] \le \epsilon \,\right\},
+\mathrm{EMC}_{\mathcal{D},\epsilon}(\mathcal{T}) := \max \lbrace\ n \mid \mathbb{E}_{S \sim \mathcal{D}^n}[\mathrm{Error}_S(\mathcal{T}(S))] \le \epsilon \ \rbrace,
 $$
 
 the largest sample size on which $\mathcal{T}$ can still drive training error below $\epsilon$ on average. Their **Generalized Double Descent hypothesis** then splits behavior into three regimes relative to the number of training samples $n$:
@@ -44,12 +44,16 @@ Hastie, Montanari, Rosset, and Tibshirani analyze the cleanest possible instance
 
 For the null case (true signal $\beta_0 = 0$, so the model is fitting pure noise with variance $\sigma^2$), their Theorem 1 gives the asymptotic risk in closed form:
 
+For $\gamma < 1$ (underparameterized):
+
 $$
-R(\gamma) =
-\begin{cases}
-\dfrac{\sigma^2 \gamma}{1 - \gamma} & \gamma < 1 \\[2ex]
-\dfrac{\sigma^2}{\gamma - 1} & \gamma > 1
-\end{cases}
+R(\gamma) = \dfrac{\sigma^2 \gamma}{1 - \gamma}
+$$
+
+For $\gamma > 1$ (overparameterized, minimum-norm interpolation):
+
+$$
+R(\gamma) = \dfrac{\sigma^2}{\gamma - 1}
 $$
 
 Plotted, this is double descent, exactly:
@@ -58,7 +62,7 @@ Plotted, this is double descent, exactly:
 
 *Risk of the minimum-norm interpolator as a function of $\gamma = p/n$, for the null-signal case with $\sigma^2 = 1$. Diverges at the interpolation threshold and decays back toward zero in the overparameterized regime — this is Hastie et al.'s Theorem 1, plotted directly.*
 
-Both branches diverge as $\gamma \to 1$, exactly at the interpolation threshold, and both decay away from it — the left branch toward $0$ as $\gamma \to 0$, the right branch toward $0$ as $\gamma \to \infty$. When there's real signal ($\|\beta_0\|^2 = r^2 > 0$), the same theorem gives the overparameterized branch as $R(\gamma) = r^2(1 - 1/\gamma) + \sigma^2/(\gamma - 1)$ — a bias term that saturates at $r^2$ plus the same variance spike, so the qualitative shape survives: sharp peak at $\gamma=1$, decay on both sides.
+Both branches diverge as $\gamma \to 1$, exactly at the interpolation threshold, and both decay away from it — the left branch toward $0$ as $\gamma \to 0$, the right branch toward $0$ as $\gamma \to \infty$. When there's real signal ($\lVert\beta_0\rVert^2 = r^2 > 0$), the same theorem gives the overparameterized branch as $R(\gamma) = r^2(1 - 1/\gamma) + \sigma^2/(\gamma - 1)$ — a bias term that saturates at $r^2$ plus the same variance spike, so the qualitative shape survives: sharp peak at $\gamma=1$, decay on both sides.
 
 ## Why the peak: a near-singular design matrix
 
