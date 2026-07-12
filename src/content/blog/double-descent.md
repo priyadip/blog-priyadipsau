@@ -87,4 +87,3 @@ The practical shift this implies: stop treating raw parameter count as the thing
 
 ---
 
-*TODO (before publishing): check this against the original LinkedIn text for anything lost in extraction/tone, and confirm the arXiv links resolve to the exact versions you intend to cite.*
