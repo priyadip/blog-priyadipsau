@@ -3,7 +3,7 @@ title: "When Bigger Models Generalize Better: The Double Descent Phenomenon"
 description: "Classical bias-variance theory says oversized models memorize and fail to generalize. A closed-form linear regression result shows exactly why deep learning breaks that rule."
 publishDate: 2026-06-25
 tags: ["machine-learning", "generalization", "theory"]
-draft: true
+draft: false
 ---
 
 > Originally published on [LinkedIn](https://www.linkedin.com/pulse/when-bigger-models-generalize-better-double-descent-phenomenon-sau-lxklc/) on June 25, 2026. Adapted and expanded here with the underlying math — **draft, needs a pass against the original before publishing.**
